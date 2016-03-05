@@ -3,7 +3,16 @@ var fs = require('fs');
 var Trie = require('./trie');
 var Boggle = require('./boggle');
 
-var boggle = new Boggle;
+var boggle;
+var letters = process.argv[2];  // letters argument is optional
+if (letters) {
+  if (letters.length !== 16 || !letters.match(/^[a-z]+$/i)) {
+    throw new Error('\033[0;31m Need letters to fill a 4x4 board \033[m');
+  }
+  boggle = new Boggle(letters.toUpperCase());
+} else {
+  boggle = new Boggle; // this generates a random board if none are provided
+}
 boggle.print();
 
 var english = new Trie;

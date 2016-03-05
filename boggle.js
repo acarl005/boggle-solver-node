@@ -14,7 +14,7 @@ var dice = [
 //   'EGINTV', 'EHINPS', 'ELPSTU', 'GILRUW',
 // ];
 
-function Boggle() {
+function Boggle(letters) {
 
   function roll() {
     var diceIndex = Math.floor(Math.random() * dice.length);
@@ -30,8 +30,8 @@ function Boggle() {
   for (var i = 0; i < 4; i++) {
     var row = [];
     for (var j = 0; j < 4; j++) {
-      if (userInput)
-        row.push(process.argv[2][i*4 + j].toUpperCase());
+      if (letters)
+        row.push(letters[i * 4 + j]);
       else
         row.push(roll());
     }
