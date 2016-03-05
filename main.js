@@ -71,6 +71,10 @@ function solve() {
   }
 
   uniqWords = Array.from(new Set(words)); // convert from array to set and back to array to enforce uniqueness
+  uniqWords.sort(function(a, b){
+    return a.length - b.length;
+  });
+
   console.log(uniqWords.length + ' words\n');
   console.log(uniqWords.join(', '));
 

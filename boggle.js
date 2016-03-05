@@ -25,13 +25,19 @@ function Boggle() {
 
   this.board = [];
 
+  var userInput = validUserInput();
+
   for (var i = 0; i < 4; i++) {
     var row = [];
     for (var j = 0; j < 4; j++) {
-      row.push(roll());
+      if (userInput)
+        row.push(process.argv[2][i*4 + j].toUpperCase());
+      else
+        row.push(roll());
     }
     this.board.push(row);
   }
+
 }
 
 Boggle.prototype.has = function(y, x) {
@@ -63,5 +69,13 @@ Boggle.prototype.print = function() {
   }
   console.log(this.boardStr);
 };
+
+function validUserInput() {
+  if (process.argv.length <= 2)
+    return false;
+
+  userInput = process.argv[2];
+  return typeof userInput === 'string' && userInput.length === 16 && /^[a-zA-Z]+$/.test(userInput);
+}
 
 module.exports = Boggle;
