@@ -30,7 +30,8 @@ Trie.prototype.add = function(string) {
 
 
 
-
+// returns true if the string can prefix a valid english word
+// e.g. "modul", although not a word, will return true because it prefixes "module"
 Trie.prototype.isPrefix = function(prefix) {
 
   prefix = prefix.toLowerCase();

@@ -1,0 +1,30 @@
+{
+  "name": "solve-boggle",
+  "version": "1.0.0",
+  "description": "Solve Boggle boards by finding every English word in them.",
+  "main": "boggle.js",
+  "bin": {
+    "solve-boggle": "./bin/solve-boggle"
+  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acarl005/boggle-solver-node.git"
+  },
+  "keywords": [
+    "boggle",
+    "solve",
+    "trie",
+    "board",
+    "solution",
+    "word"
+  ],
+  "author": "Andrew Carlson <acarl005@g.ucla.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acarl005/boggle-solver-node/issues"
+  },
+  "homepage": "https://github.com/acarl005/boggle-solver-node#readme"
+}

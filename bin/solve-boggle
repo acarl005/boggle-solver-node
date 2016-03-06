@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+'use strict';
+
+const Boggle = require('../boggle');
+
+
+if (module.parent) { // check if this is a module
+  module.exports = Boggle;
+} else {
+  let letters = process.argv[2]; // letters argument is optional
+  load(letters);
+}
+
+function load(letters) {
+  let boggle = new Boggle(letters);
+  boggle.solve();
+  boggle.on('solved', words => {
+    boggle.print();
+    console.log(words.length + ' words\n');
+    console.log(words.join(', '));
+  });
+}
