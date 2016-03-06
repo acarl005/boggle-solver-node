@@ -110,6 +110,7 @@ class Boggle extends EventEmitter {
     } else { // if english.txt hasn't loaded into the trie yet, wait until it has
       lineReader.on('close', this._startPaths.bind(this));
     }
+    return this;
   }
 
   _startPaths() {
