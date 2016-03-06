@@ -59,7 +59,12 @@ AIR, ATE, ART, ERE, EGO, ERG, ETA, GET, GEE, IRE, ITS, JAR, JOG, JET, ORE, PER, 
 ```
 
 
-Instead, you can install globally and invoke the command like this.
+Instead, you can install globally...
+```bash
+npm install -g solve-boggle
+```
+
+and invoke the command like this.
 ```bash
 solve-boggle erogijeratierstp
 ```
