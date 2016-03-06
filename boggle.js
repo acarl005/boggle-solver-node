@@ -10,7 +10,7 @@ const english = new Trie;
 let loadedEnglish = false;
 
 const lineReader = readline.createInterface({
-  input: fs.createReadStream('english.txt')
+  input: fs.createReadStream(__dirname + '/english.txt')
 });
 
 lineReader.on('line', line => { // add each english words to the trie

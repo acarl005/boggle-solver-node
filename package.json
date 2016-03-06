@@ -1,6 +1,6 @@
 {
   "name": "solve-boggle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Solve Boggle boards by finding every English word in them.",
   "main": "boggle.js",
   "bin": {
