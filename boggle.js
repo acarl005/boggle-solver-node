@@ -6,17 +6,15 @@ const fs = require('fs');
 const Trie = require('./trie');
 
 
-const english = new Trie;
-let loadedEnglish = false;
+const english = new Trie; // store all words in a trie
+let loadedEnglish = false; // flag for whether or not we're done loading english.txt
 
-const lineReader = readline.createInterface({
+const lineReader = readline.createInterface({ // stream in each word
   input: fs.createReadStream(__dirname + '/english.txt')
 });
 
 lineReader.on('line', line => { // add each english words to the trie
-  if (line.search(/^[a-z]+$/) != -1) { // filter out words with accents on the letters
-    english.add(line.trim());
-  }
+  english.add(line.trim());
 });
 
 lineReader.on('close', () => loadedEnglish = true);
@@ -75,7 +73,7 @@ class Boggle extends EventEmitter {
   has(y, x) {
     return x >= 0 &&
            x < 4  &&
-           y >= 0  &&
+           y >= 0 &&
            y < 4;
   }
 
