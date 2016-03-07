@@ -1,6 +1,5 @@
 'use strict';
 
-const EventEmitter = require('events');
 const readline = require('readline');
 const fs = require('fs');
 const Trie = require('./trie');
@@ -19,10 +18,9 @@ lineReader.on('line', line => { // add each english words to the trie
 
 lineReader.on('close', () => loadedEnglish = true);
 
-class Boggle extends EventEmitter {
+class Boggle {
 
   constructor(letters) {
-    super();
     this.board = [];
     this.words = [];
 
@@ -102,16 +100,16 @@ class Boggle extends EventEmitter {
     console.log(boardStr);
   }
 
-  solve() {
+  solve(done) {
     if (loadedEnglish) { // begin solving if we have loaded english.txt
-      this._startPaths();
+      this._startPaths(done);
     } else { // if english.txt hasn't loaded into the trie yet, wait until it has
-      lineReader.on('close', this._startPaths.bind(this));
+      lineReader.on('close', this._startPaths.bind(this, done));
     }
     return this;
   }
 
-  _startPaths() {
+  _startPaths(done) {
     let that = this;
     let visited = [
       [false, false, false, false],
@@ -168,7 +166,7 @@ class Boggle extends EventEmitter {
     });
 
     this.words = uniqWords;
-    process.nextTick(this.emit.bind(this), 'solved', uniqWords);
+    process.nextTick(done, uniqWords);
 
   }
 

@@ -13,8 +13,7 @@ if (module.parent) { // check if this is a module
 
 function load(letters) {
   let boggle = new Boggle(letters);
-  boggle.solve();
-  boggle.on('solved', words => {
+  boggle.solve(words => {
     boggle.print();
     console.log(words.length + ' words\n');
     console.log(words.join(', '));

@@ -14,9 +14,9 @@ You can supply the letters to the board in the constructor.
 const Boggle = require('solve-boggle');
 
 let boggle = new Boggle('adofhptogijrstjg');
-boggle.solve();
-boggle.on('solved', words => {
+boggle.solve(words => {
   boggle.print(); // format the board nicely
+  // words is an array of the board's words. It is now also referenced as boggle.words
   console.log(words.length + ' words');
   console.log(words.join(', '));
 });
@@ -27,11 +27,9 @@ Or you can omit this to generate a random board.
 const Boggle = require('solve-boggle');
 
 let boggle = new Boggle;
-boggle.solve();
-boggle.on('solved', words => {
+boggle.solve(words => {
   boggle.print();
-  console.log(words.length + ' words');
-  console.log(words.join(', '));
+  console.log(words);
 });
 ```
 

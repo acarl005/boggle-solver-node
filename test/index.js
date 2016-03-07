@@ -10,8 +10,7 @@ describe('Boggle solver', () => {
       'ERROR', 'EAGER', 'GORGE', 'GROVE', 'GRAVE', 'ROVER', 'ROGER', 'RARER', 'GRAVER', 'OVERAGE'
     ];
     var boggle = new Boggle('eorgvregearjkgoe');
-    boggle.solve();
-    boggle.on('solved', words => {
+    boggle.solve(words => {
       expect(words).to.eql(ans);
       done();
     });
@@ -25,8 +24,7 @@ describe('Boggle solver', () => {
       'ERROR', 'EAGER', 'GORGE', 'GROVE', 'GRAVE', 'ROVER', 'ROGER', 'RARER', 'GRAVER', 'OVERAGE'
     ];
     var boggle = new Boggle('eorgvregearjkgoe');
-    boggle.solve();
-    boggle.on('solved', words => {
+    boggle.solve(words => {
       expect(words).to.eql(ans);
       done();
     });
