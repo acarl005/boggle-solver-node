@@ -121,37 +121,38 @@ class Boggle {
     }
 
     function visit(y, x, word) {
-      visited[y][x] = true; // mark this space as visited
       let letter = that.board[y][x];
       word += (letter === 'Q' ? 'QU' : letter); // account for the "Qu" die
       if (english.contains(word)) { // if its a valid english word, add it to the array
         that.words.push(word);
       }
-      if (english.isPrefix(word)) { // if that is a potential prefix for a valid english word, keep going
-        if (that._has(y - 1, x - 1) && !visited[y - 1][x - 1]) {
-          visit(y - 1, x - 1, word);
-        }
-        if (that._has(y - 1, x) && !visited[y - 1][x]) {
-          visit(y - 1, x, word);
-        }
-        if (that._has(y - 1, x + 1) && !visited[y - 1][x + 1]) {
-          visit(y - 1, x + 1, word);
-        }
-        if (that._has(y, x - 1) && !visited[y][x - 1]) {
-          visit(y, x - 1, word);
-        }
-        if (that._has(y, x + 1) && !visited[y][x + 1]) {
-          visit(y, x + 1, word);
-        }
-        if (that._has(y + 1, x - 1) && !visited[y + 1][x - 1]) {
-          visit(y + 1, x - 1, word);
-        }
-        if (that._has(y + 1, x) && !visited[y + 1][x]) {
-          visit(y + 1, x, word);
-        }
-        if (that._has(y + 1, x + 1) && !visited[y + 1][x + 1]) {
-          visit(y + 1, x + 1, word);
-        }
+      if (!english.isPrefix(word)) { // if that is not a potential prefix for a valid english word, stop
+        return;
+      }
+      visited[y][x] = true; // mark this space as visited
+      if (that._has(y - 1, x - 1) && !visited[y - 1][x - 1]) { // TODO: find a better way to do this that doesn't involve the unecessary creation of another array
+        visit(y - 1, x - 1, word);
+      }
+      if (that._has(y - 1, x) && !visited[y - 1][x]) {
+        visit(y - 1, x, word);
+      }
+      if (that._has(y - 1, x + 1) && !visited[y - 1][x + 1]) {
+        visit(y - 1, x + 1, word);
+      }
+      if (that._has(y, x - 1) && !visited[y][x - 1]) {
+        visit(y, x - 1, word);
+      }
+      if (that._has(y, x + 1) && !visited[y][x + 1]) {
+        visit(y, x + 1, word);
+      }
+      if (that._has(y + 1, x - 1) && !visited[y + 1][x - 1]) {
+        visit(y + 1, x - 1, word);
+      }
+      if (that._has(y + 1, x) && !visited[y + 1][x]) {
+        visit(y + 1, x, word);
+      }
+      if (that._has(y + 1, x + 1) && !visited[y + 1][x + 1]) {
+        visit(y + 1, x + 1, word);
       }
       visited[y][x] = false; // unmark this as visited so other paths can visit it
     }
@@ -182,7 +183,7 @@ class Boggle {
     ];
     for (let x = 0; x < 4; x++) {  // begin a path at each position on the grid
       for (let y = 0; y < 4; y++) {
-        found || visit(y, x, '');
+        found || visit(y, x, ''); // the logical OR will prevent "visit" from being called again if "found" ever becomes true in order to avoid unecessary checking
       }
     }
     return found;
