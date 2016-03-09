@@ -68,16 +68,20 @@ class Boggle {
   }
 
   print() {
-    let boardStr = `
-    ┌───┬───┬───┬───┐
-    │ % │ % │ % │ % │
-    ├───┼───┼───┼───┤
-    │ % │ % │ % │ % │
-    ├───┼───┼───┼───┤
-    │ % │ % │ % │ % │
-    ├───┼───┼───┼───┤
-    │ % │ % │ % │ % │
-    └───┴───┴───┴───┘
+    console.log(this.toString());
+  }
+
+  toString() {
+    let boardStr = `\
+    ╔═══╦═══╦═══╦═══╗
+    ║ % ║ % ║ % ║ % ║
+    ╠═══╬═══╬═══╬═══╣
+    ║ % ║ % ║ % ║ % ║
+    ╠═══╬═══╬═══╬═══╣
+    ║ % ║ % ║ % ║ % ║
+    ╠═══╬═══╬═══╬═══╣
+    ║ % ║ % ║ % ║ % ║
+    ╚═══╩═══╩═══╩═══╝
     `;
     // fill in the boardStr with the letters
     this.board.forEach(row => {
@@ -89,7 +93,7 @@ class Boggle {
         }
       });
     });
-    console.log(boardStr);
+    return boardStr;
   }
 
   solve(done) {

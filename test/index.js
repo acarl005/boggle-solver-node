@@ -43,4 +43,9 @@ describe('Boggle solver', () => {
     expect(boggle.contains('randomstuff')).to.be.false;
     expect(boggle.contains('roverd')).to.be.false;
   });
+
+  it('should print nicely', () => {
+    var boggle = new Boggle;
+    boggle.print();
+  });
 });
