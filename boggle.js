@@ -67,14 +67,6 @@ class Boggle {
     }
   }
 
-  // returns true if the given coordinate is inside the board
-  has(y, x) {
-    return x >= 0 &&
-           x < 4  &&
-           y >= 0 &&
-           y < 4;
-  }
-
   print() {
     let boardStr = `
     ┌───┬───┬───┬───┐
@@ -132,28 +124,28 @@ class Boggle {
         that.words.push(word);
       }
       if (english.isPrefix(word)) { // if that is a potential prefix for a valid english word, keep going
-        if (that.has(y - 1, x - 1) && !visited[y - 1][x - 1]) {
+        if (that._has(y - 1, x - 1) && !visited[y - 1][x - 1]) {
           visit(y - 1, x - 1, word);
         }
-        if (that.has(y - 1, x) && !visited[y - 1][x]) {
+        if (that._has(y - 1, x) && !visited[y - 1][x]) {
           visit(y - 1, x, word);
         }
-        if (that.has(y - 1, x + 1) && !visited[y - 1][x + 1]) {
+        if (that._has(y - 1, x + 1) && !visited[y - 1][x + 1]) {
           visit(y - 1, x + 1, word);
         }
-        if (that.has(y, x - 1) && !visited[y][x - 1]) {
+        if (that._has(y, x - 1) && !visited[y][x - 1]) {
           visit(y, x - 1, word);
         }
-        if (that.has(y, x + 1) && !visited[y][x + 1]) {
+        if (that._has(y, x + 1) && !visited[y][x + 1]) {
           visit(y, x + 1, word);
         }
-        if (that.has(y + 1, x - 1) && !visited[y + 1][x - 1]) {
+        if (that._has(y + 1, x - 1) && !visited[y + 1][x - 1]) {
           visit(y + 1, x - 1, word);
         }
-        if (that.has(y + 1, x) && !visited[y + 1][x]) {
+        if (that._has(y + 1, x) && !visited[y + 1][x]) {
           visit(y + 1, x, word);
         }
-        if (that.has(y + 1, x + 1) && !visited[y + 1][x + 1]) {
+        if (that._has(y + 1, x + 1) && !visited[y + 1][x + 1]) {
           visit(y + 1, x + 1, word);
         }
       }
@@ -166,8 +158,75 @@ class Boggle {
     });
 
     this.words = uniqWords;
-    process.nextTick(done, uniqWords);
+    if (done) {
+      process.nextTick(done, uniqWords);
+    }
+  }
 
+  contains(target) {
+    if(target.length < 3) {
+      return false;
+    }
+    target = target.toUpperCase();
+    let that = this;
+    let found = false;
+    let visited = [
+      [false, false, false, false],
+      [false, false, false, false],
+      [false, false, false, false],
+      [false, false, false, false],
+    ];
+    for (let x = 0; x < 4; x++) {  // begin a path at each position on the grid
+      for (let y = 0; y < 4; y++) {
+        found || visit(y, x, '');
+      }
+    }
+    return found;
+
+    function visit(y, x, word) {
+      word += that.board[y][x];
+      let i = word.length - 1;
+      if (word[i] !== target[i]){
+        return;
+      }
+      if (word.length === target.length) {
+        return found = true;
+      }
+      visited[y][x] = true;
+      if (that._has(y - 1, x - 1) && !visited[y - 1][x - 1]) {
+        visit(y - 1, x - 1, word);
+      }
+      if (that._has(y - 1, x) && !visited[y - 1][x]) {
+        visit(y - 1, x, word);
+      }
+      if (that._has(y - 1, x + 1) && !visited[y - 1][x + 1]) {
+        visit(y - 1, x + 1, word);
+      }
+      if (that._has(y, x - 1) && !visited[y][x - 1]) {
+        visit(y, x - 1, word);
+      }
+      if (that._has(y, x + 1) && !visited[y][x + 1]) {
+        visit(y, x + 1, word);
+      }
+      if (that._has(y + 1, x - 1) && !visited[y + 1][x - 1]) {
+        visit(y + 1, x - 1, word);
+      }
+      if (that._has(y + 1, x) && !visited[y + 1][x]) {
+        visit(y + 1, x, word);
+      }
+      if (that._has(y + 1, x + 1) && !visited[y + 1][x + 1]) {
+        visit(y + 1, x + 1, word);
+      }
+      visited[y][x] = false;
+    }
+  }
+
+  // returns true if the given coordinate is inside the board
+  _has(y, x) {
+    return x >= 0 &&
+           x < 4  &&
+           y >= 0 &&
+           y < 4;
   }
 
 }

@@ -33,6 +33,13 @@ boggle.solve(words => {
 });
 ```
 
+Check for individual words in the board.
+```javascript
+let boggle = new Boggle('eorgvregearjkgoe');
+boggle.contains('grave'); // true
+boggle.contains('randomstuff') // false
+```
+
 ## Boggle solver CLI
 
 Board letters are the only argument (optional). Random board is generated if no argument supplied.

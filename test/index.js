@@ -29,4 +29,18 @@ describe('Boggle solver', () => {
       done();
     });
   });
+
+  it('should have working "contains" method', () => {
+    var boggle = new Boggle('eorgvregearjkgoe');
+    expect(boggle.contains('are')).to.be.true;
+    expect(boggle.contains('oar')).to.be.true;
+    expect(boggle.contains('grave')).to.be.true;
+    expect(boggle.contains('overage')).to.be.true;
+    expect(boggle.contains('a')).to.be.false;
+    expect(boggle.contains('ar')).to.be.false;
+    expect(boggle.contains('not')).to.be.false;
+    expect(boggle.contains('gores')).to.be.false;
+    expect(boggle.contains('randomstuff')).to.be.false;
+    expect(boggle.contains('roverd')).to.be.false;
+  });
 });
