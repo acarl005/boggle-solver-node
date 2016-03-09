@@ -16,7 +16,7 @@ const Boggle = require('solve-boggle');
 let boggle = new Boggle('adofhptogijrstjg');
 boggle.solve(words => {
   boggle.print(); // format the board nicely
-  // words is an array of the board's words. It is now also referenced as boggle.words
+  // "words" is an array of the board's words. It is now also referenced as boggle.words
   console.log(words.length + ' words');
   console.log(words.join(', '));
 });
