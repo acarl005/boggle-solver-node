@@ -13,7 +13,7 @@ You can supply the letters to the board in the constructor.
 ```javascript
 const Boggle = require('solve-boggle');
 
-let boggle = new Boggle('adofhptogijrstjg');
+let boggle = new Boggle('adofhptogijrstjg'); // letters for 4x4 board from left-to-right then top-to-bottem
 boggle.solve(words => {
   boggle.print(); // format the board nicely
   // "words" is an array of the board's words. It is now also referenced as boggle.words
@@ -22,27 +22,32 @@ boggle.solve(words => {
 });
 ```
 
-Or you can omit this to generate a random board.
+The board can theoretically be any NxN size. This is efficient enough to handle 53x53 boards. They can be generated randomly from the boggle dice if N is between 4 and 6 inclusive.
 ```javascript
 const Boggle = require('solve-boggle');
 
-let boggle = new Boggle;
-boggle.solve(words => {
-  boggle.print();
-  console.log(words);
-});
+let boggle1 = new Boggle('CLEINRTSHBNFAOUIEERGTPUNE'); // 5x5 board
+let boggle2 = new Boggle('sdjgneraghpareugnaeporigrpeouganerkgjarpehgaeraetusnviehtvndjfgd'); // 8x8 board
+
+let boggle1 = new Boggle(6); // roll the dice for a 6x6 board
+let boggle2 = new Boggle(5);
+let boggle3 = new Boggle(); // defaults to 4
 ```
 
 Check for individual words in the board.
 ```javascript
 let boggle = new Boggle('eorgvregearjkgoe');
-boggle.contains('grave'); // true
-boggle.contains('randomstuff') // false
+boggle.contains('grave', result => {
+  console.log(result); // true
+});
+boggle.contains('randomstuff', result => {
+  console.log(result); // false
+});
 ```
 
 ## Boggle solver CLI
 
-Board letters are the only argument (optional). Random board is generated if no argument supplied.
+The argument to the command is the same as the argument you would be giving to the Boggle constructor function.
 ```bash
 node_modules/.bin/solve-boggle erogijeratierstp
 ```
@@ -73,3 +78,5 @@ and invoke the command like this.
 ```bash
 solve-boggle erogijeratierstp
 ```
+
+## Documentation

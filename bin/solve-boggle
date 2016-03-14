@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-const Boggle = require('../boggle');
+const Boggle = require('../lib/boggle');
 
 
 if (module.parent) { // check if this is a module
   module.exports = Boggle;
 } else {
   let letters = process.argv[2]; // letters argument is optional
+  if (letters && letters.match(/^\d+$/)) {
+    letters = +letters;
+  }
   load(letters);
 }
 
