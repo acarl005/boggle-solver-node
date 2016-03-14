@@ -22,7 +22,7 @@ boggle.solve(words => {
 });
 ```
 
-The board can theoretically be any NxN size. This is efficient enough to handle 53x53 boards. They can be generated randomly from the boggle dice if N is between 4 and 6 inclusive.
+The board can theoretically be any NxN size. This is efficient enough to handle 200x200 boards in less than a second. They can be generated randomly from the boggle dice if N is between 4 and 6 inclusive.
 ```javascript
 const Boggle = require('solve-boggle');
 
