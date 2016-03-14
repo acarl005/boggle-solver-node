@@ -29,9 +29,9 @@ const Boggle = require('solve-boggle');
 let boggle1 = new Boggle('CLEINRTSHBNFAOUIEERGTPUNE'); // 5x5 board
 let boggle2 = new Boggle('sdjgneraghpareugnaeporigrpeouganerkgjarpehgaeraetusnviehtvndjfgd'); // 8x8 board
 
-let boggle1 = new Boggle(6); // roll the dice for a 6x6 board
-let boggle2 = new Boggle(5);
-let boggle3 = new Boggle(); // defaults to 4
+let boggle3 = new Boggle(6); // roll the dice for a 6x6 board
+let boggle4 = new Boggle(5);
+let boggle5 = new Boggle(); // defaults to 4
 ```
 
 Check for individual words in the board.
