@@ -80,3 +80,81 @@ solve-boggle erogijeratierstp
 ```
 
 ## Documentation
+<a name="Boggle"></a>
+<a name="Boggle"></a>
+## Boggle
+Class representing a Boggle board.
+
+**Kind**: global class  
+
+* [Boggle](#Boggle)
+    * [new Boggle([boardParam])](#new_Boggle_new)
+    * _instance_
+        * [.print()](#Boggle+print)
+        * [.toString()](#Boggle+toString)
+        * [.solve(done)](#Boggle+solve)
+        * [.contains(target, done)](#Boggle+contains)
+    * _inner_
+        * [~solveCallback](#Boggle..solveCallback) : <code>function</code>
+        * [~containsCallback](#Boggle..containsCallback) : <code>function</code>
+
+<a name="new_Boggle_new"></a>
+### new Boggle([boardParam])
+Create an NxN board.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [boardParam] | <code>string</code> &#124; <code>number</code> | <code>4</code> | Either a string with the board's letters (left-to-right top-to-bottom), or a size N. |
+
+<a name="Boggle+print"></a>
+### boggle.print()
+Format the board as a string and write to stdout.
+
+**Kind**: instance method of <code>[Boggle](#Boggle)</code>  
+<a name="Boggle+toString"></a>
+### boggle.toString()
+Convert the board to a string.
+
+**Kind**: instance method of <code>[Boggle](#Boggle)</code>  
+<a name="Boggle+solve"></a>
+### boggle.solve(done)
+Finds all English words in the board.
+
+**Kind**: instance method of <code>[Boggle](#Boggle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| done | <code>[solveCallback](#Boggle..solveCallback)</code> | Callback to run when done solving. |
+
+<a name="Boggle+contains"></a>
+### boggle.contains(target, done)
+Finds one English word in the board.
+
+**Kind**: instance method of <code>[Boggle](#Boggle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| target | <code>string</code> | Word to search for in the board. |
+| done | <code>[containsCallback](#Boggle..containsCallback)</code> | Callback to run when done verifying. |
+
+<a name="Boggle..solveCallback"></a>
+### Boggle~solveCallback : <code>function</code>
+Callback to run when done solving.
+
+**Kind**: inner typedef of <code>[Boggle](#Boggle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| words | <code>array</code> | Array of the words in the board. |
+
+<a name="Boggle..containsCallback"></a>
+### Boggle~containsCallback : <code>function</code>
+Callback to run when done verifying.
+
+**Kind**: inner typedef of <code>[Boggle](#Boggle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| found | <code>boolean</code> | Whether or not the word was found in the board. |
+
